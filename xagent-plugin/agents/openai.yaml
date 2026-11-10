@@ -1,0 +1,4 @@
+interface:
+  display_name: "XAgent Plugin"
+  short_description: "Build product plugins on Xpell Agent"
+  default_prompt: "Use $xagent-plugin to create or extend an application-local Xpell Agent Plugin."

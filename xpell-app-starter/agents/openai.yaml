@@ -1,0 +1,4 @@
+interface:
+  display_name: "Xpell App Starter Contract"
+  short_description: "Author and validate reusable Xpell app starters"
+  default_prompt: "Use the Xpell App Starter Contract to create, modify, validate, or review a reusable Xpell app starter from current source truth."

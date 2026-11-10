@@ -1,0 +1,4 @@
+interface:
+  display_name: "XAgent"
+  short_description: "Develop current Xpell Agent architecture"
+  default_prompt: "Use $xagent to make a source-grounded change to the current Xpell Agent architecture."

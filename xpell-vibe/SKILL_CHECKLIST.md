@@ -1,0 +1,68 @@
+# XVibe Contract Checklist
+
+Use this checklist before merging XVibe architecture, intent, artifact, structured editing, mutation-plan, conversation, or persistence changes.
+
+- [ ] Verified the relevant API against `packages/xnode/src/XVIBE/**`; no APIs or fields were inferred.
+- [ ] `Current Truth` and `Recommendation` claims are separated and not mixed in the same unlabeled statement.
+- [ ] Architecture invariants in `SKILL.md` are preserved or explicitly updated with source-backed rationale.
+- [ ] No common failure pattern from `SKILL.md` was introduced.
+- [ ] Debug flow stages are observable through logs, returned payloads, persisted artifacts, or explicit test assertions.
+- [ ] Kept `xvibe` module ops aligned across `XVibeModule._ops`, underscore method handlers, tests, and `SKILL_API_MAP.md`.
+- [ ] Preserved `XVibeIntentEngine` processor ordering unless the change intentionally updates ordering and tests.
+- [ ] Ensured intent processors return `null` when not matched and do not mutate runtime/app state during analysis.
+- [ ] Kept semantic intent last in the processor chain and gated by current semantic configuration.
+- [ ] Kept AI output as data artifacts, intent results, plans, or explicit module commands before mutation.
+- [ ] Verified canonicalization against source aliases/functions before documenting an action, synonym, field, or resolution strategy.
+- [ ] Marked inferred guidance as `Recommendation`, not `Current Truth`.
+- [ ] Preserved processor contract: `analyze(...)` returns an `XVibeIntentResult` or `null`, with no direct app/view/entity/flow mutation during analysis.
+- [ ] Every new or changed primitive has unit test coverage.
+- [ ] Every new or changed primitive has pipeline integration coverage from prompt/intent through executable descriptor or execution.
+- [ ] Every new or changed primitive has persistence coverage for the authoritative state it mutates or confirms it does not persist.
+- [ ] Every new or changed primitive has retry/idempotency coverage or an explicit non-idempotent failure contract.
+- [ ] Every new or changed primitive has composition coverage with at least one adjacent primitive or mutation-plan path.
+- [ ] Every new primitive includes at least one real prompt acceptance test.
+- [ ] Real prompt acceptance tests reach persisted JSON, not only helper return values.
+- [ ] Kept structured view editing deterministic; no AI fallback was added to `apply-view-edit`.
+- [ ] Structured edit params are canonicalized before eligibility/mutation.
+- [ ] Structured edit aliases still collapse to one of the supported canonical action values.
+- [ ] Structured view target resolution remains explicit: view resolution, target resolution, eligibility, mutation, persistence.
+- [ ] No primitive-specific resolver was introduced; shared resolver/canonicalization paths were reused or generically extended.
+- [ ] The same shared resolver contract is used in eligibility, execution, retry/idempotency, and composition paths.
+- [ ] No executable semantic action is produced before canonicalization, view resolution, target resolution, and validation complete.
+- [ ] View resolution behavior matches `resolveProjectViewId` strategies: `exact`, `current-view`, `normalized`, `root-alias`, `target-content-current`.
+- [ ] Target resolution behavior matches `resolveViewTarget` strategies: `id`, `root`, `text`, `normalized_id`, `normalized_text`, `text_type_id`.
+- [ ] Ambiguous or missing text targets fail explicitly; they are not resolved by arbitrary selection.
+- [ ] Structured edits persist only through `server-xvm.push_update`.
+- [ ] Structured edits fail on source-view/persisted-view id mismatch.
+- [ ] `_xem.fire(...)` and `wsBroadcastScoped(...)` are treated as signals/transport, not persistence.
+- [ ] No duplicate execution path was introduced for any primitive.
+- [ ] Mutation plans use `_type: "mutation-plan"` and compiled primitive descriptors only.
+- [ ] Mutation-plan primitives are limited to `{ _module: "xvibe", _op: "apply-view-edit" }`.
+- [ ] Mutation plans execute only canonical primitive descriptors, not aliases or semantic-only actions.
+- [ ] `apply-mutation-plan` validates `_can_apply`, step shape, primitive shape, canonical params, and app/env boundary before execution.
+- [ ] Mutation-plan execution remains sequential, stops on first failure, and does not imply rollback.
+- [ ] Unsupported mutation-plan steps remain explicit with `_status: "unsupported"` and a reason.
+- [ ] No client-side primitive execution was introduced.
+- [ ] Server/client artifact contracts were tested end-to-end for client-visible artifacts, buttons, action descriptors, conversation artifacts, or execution results.
+- [ ] Artifact request execution uses `ArtifactExecutor`; execution graph execution uses `ExecutionGraphExecutor`.
+- [ ] CRUD execution graph assumptions match the current built-in recipe and capability registry.
+- [ ] App/view/flow/entity persistence goes through `server-xvm` commands.
+- [ ] Project Memory reads/writes go through `server-xvm` or existing XVM project memory helpers.
+- [ ] Conversation state remains file-backed under app/env `conversations`, not XData or XDB.
+- [ ] Conversation roles/statuses match source unions before documenting or persisting new values.
+- [ ] Learned intents remain file-backed under app/env `intent-memory/learned-intents.json`.
+- [ ] Learned intent selected-object placeholders are preserved and resolved only from runtime selected object context.
+- [ ] Conversation and learned intent payloads remain JSON-compatible data only.
+- [ ] Runtime skill snapshots remain transient in `GenerationManager`; they are not treated as durable persistence.
+- [ ] Run archives remain diagnostics under `vibe-runs`; they are not authoritative app state.
+- [ ] XVIBE logging remains diagnostic, `[xvibe]`-prefixed, and free of new secret/token payloads.
+- [ ] New primitive logs cover matched/accepted prompt, canonical action, resolved view/target or rejection, validation, persistence, retry/idempotency, and final status.
+- [ ] Expected logs are asserted in tests or manually verified and reported.
+- [ ] Client/server artifact identity uses stable conversation id + message id where conversation artifacts are involved.
+- [ ] Capability guidance advertises only tested user-visible capabilities.
+- [ ] Known regression prompts were run or explicitly reported: `Change "My App" to "Dashboard"`, `Make the "My App" label 32px, bold, with 16px margin below.`, `Add a footer label to the main view.`, `Hide Refresh`, `Remove New Record`, `Create a toolbar`, `Create a toolbar with Save and Cancel`, `Create a toolbar and move Refresh and New Record into it`, `I want to build a CRM`, `confirm the current project plan`, `What can I do with Visual Xpell?`, `How do I change object text?`.
+- [ ] Generated module handling remains delegated to `module-creator`; XVibe does not directly compile/import/load generated XModules.
+- [ ] No hidden background loops, polling, or implicit persistence were introduced.
+- [ ] Final Codex report includes Unit tests, Pipeline tests, Persistence tests, Retry tests, Composition tests, and Build, with reasons for any category not run.
+- [ ] `packages/xnode/src/test.ts` was updated or checked for any changed processor order, ops, artifacts, structured edit behavior, mutation plans, persistence paths, or conversation behavior.
+- [ ] `SKILL.md`, `SKILL_API_MAP.md`, and this checklist were updated when source behavior changed.
