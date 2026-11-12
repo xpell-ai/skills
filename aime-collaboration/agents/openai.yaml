@@ -1,0 +1,4 @@
+interface:
+  display_name: "Aime Collaboration"
+  short_description: "Coordinate Aime tasks, evidence and human review"
+  default_prompt: "Use $aime-collaboration to discover our open Aime Operations tasks and summarize blockers and next actions."
