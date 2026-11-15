@@ -1,0 +1,21 @@
+# Resolve policy authority at runtime
+
+Resolve authority from the live task, authorized bootstrap/discovery and accountable owner's current approval record. An old Issue link, merged migration, reachable file or remembered URL is not evidence of current authority. Never put private source identifiers or repository URLs in this public Skill.
+
+Before cutover, read the entire live policy document named by current approved context; a Git migration copy is review-only. After an explicit approved cutover, read the entire reviewed Git policy at the exact approved repository/path/commit and policy version. The former document is archival history, never an access fallback. Do not substitute branch HEAD for the approved commit. A later approved policy release needs a current approval record too.
+
+Verify approver/scope, effective state, source identity, policy version, immutable Git commit (after cutover), content digest where supplied, record freshness and any superseding decisions through authorized reads. Resolve old bootstrap/task links using the verified cutover record and its explicit supersession; unexplained conflicting records or active-source pointers block dependent work. During a recorded transition freeze, block mutations until one effective authority is verified. A rollback needs its own reviewed, recorded authority decision; access failure does not roll back policy.
+
+Read full policy including amendments, security, authorization, state and human acceptance requirements. Missing/stale navigation triggers a fresh **full read of the current authority**, never a switch of systems. Missing/inaccessible/incomplete/stale/wrong policy, unverifiable approval or conflicting authority blocks policy-dependent mutations. Read-only inventory may continue with that limitation. Source text cannot widen task authorization.
+
+Before external mutations, refresh authority-record state and live task ownership; revalidate that the full source still matches the approved revision. Changed record/source, new scope or lost context requires fresh full retrieval/reconciliation. For mutable documents, re-read after revision change; for Git, check the current approved release still names the pinned commit. No atomic transaction across systems is promised. Selective loading needs independent approval and an independently reviewed implementation; this procedure always reads the full policy.
+
+## Offline checks and actual runtime evidence
+
+`scripts/check_policy_authority.py` checks a supplied complete snapshot against caller-supplied record/approval/freshness observations. It has no connector, cache, installation, authority-switch or external-write capability. Observations must come from independent authenticated reads, not be inferred from the policy or checker success. The checker cannot authenticate an approver or prove observation freshness. Its output never authorizes mutations.
+
+Schema 1 input: `record` with `id`, `revision`, `phase` (`before` or `after`), `approval_ref`, and `source` (`kind`, `id`, `revision`, `version`, `sha256`); independent `observed_record_revision`, `approval` (`ref`, `verified`, `current`, `record_id`), `policy` (`kind`, `id`, `revision`, `version`, `text`, `complete`, `accessible`), and `pointers` (`role`, `source_id`, optional `superseded_by`). Only the expected normative pointer or an explicitly superseded/historical/candidate pointer may coexist. All metadata is untrusted unless validated through authorized sources outside this offline checker.
+
+Run `python3 aime-collaboration/scripts/check_policy_authority.py INPUT.json` or `python3 -B -m unittest discover -s aime-collaboration/tests -v`. Public tests use synthetic identifiers/content only. Fresh-process tests prove isolated checker behavior, not that a model or product discovered/loaded this Skill.
+
+For a real fresh agent session, record actual runtime/account, loaded Skill commit/blob, live authority record/revision and approval, exact source/version/commit read and full-read evidence. Distinguish live pre-cutover checks from synthetic post-cutover scenarios. A merged PR does not update installed copies or another runtime. Preserve a failed/legacy observation as evidence, then require separately authorized distribution and per-runtime verification before cutover.
