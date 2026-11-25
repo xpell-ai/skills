@@ -1,0 +1,4 @@
+interface:
+  display_name: "XAI Router"
+  short_description: "Develop and operate XAI Router safely"
+  default_prompt: "Use $xai-router to review a Router change against its current runtime and financial boundaries."
