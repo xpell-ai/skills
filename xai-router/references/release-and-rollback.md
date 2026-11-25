@@ -7,7 +7,7 @@
 
 ## Before authorized activation
 
-3. Confirm the exact scope, target and launch mechanism. Stop only the approved writer. Verify host-level quiescence and keep other services available. Capture a verified cold whole-work backup with database and present WAL/SHM, markers, lock state, relevant config/view state and exact prior release provenance. Keep it private and verify its inventory and integrity.
+3. Confirm the exact scope, target and launch mechanism. Stop only the approved writer. Verify host-level quiescence and keep other services available. Capture a verified cold whole-work backup with database and present WAL/SHM, markers, lock state, relevant config/view state and exact prior release provenance. Keep it private and verify its inventory and integrity. If the profile binds filesystem identity, preserve the original store's required path and inode bindings for rollback or rehearse the runbook's approved rebinding before activation.
 4. Start only the approved artifact using its documented launcher. Ordinary startup can write ownership and reconciliation state. Check a single intended listener, readiness, authenticated account and Console access, and read-back of store identity, history, ledger, holds and catalog as applicable. Stop on divergence. Record sanitized evidence.
 
 ## On activation failure

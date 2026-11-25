@@ -5,7 +5,11 @@ description: Develop, review, or operate XAI Router across request routing, XCre
 
 # XAI Router
 
-Read the owning Router checkout's `AGENTS.md` and the Xpell contracts it names. For a shared task, use [aime-collaboration](../aime-collaboration/SKILL.md) to resolve current policy, scope, ownership, and handoff. In authorized Knowledge, start with `projects/xai-router/CURRENT.md` and follow its evidence to current source, runbooks, and live task records. Use `CAPABILITIES.md` for audited coverage and `DECISIONS.md` for decision status.
+Read the owning Router checkout's `AGENTS.md` and the applicable Xpell contracts it names. Ground technical findings in current source and tests. If a named contract is unavailable, flag the gap and use the owning layer's source and docs for read-only analysis.
+
+For a shared task, use `$aime-collaboration` to resolve current policy, scope, ownership, and handoff. If that skill is unavailable locally, read its [published instructions](https://github.com/xpell-ai/skills/blob/main/aime-collaboration/SKILL.md). Verify live authority before any shared-task mutation.
+
+When authorized Knowledge is accessible, start with `projects/xai-router/CURRENT.md` and follow its evidence to current source, runbooks, and live task records. Use `CAPABILITIES.md` for audited coverage and `DECISIONS.md` for decision status.
 
 Verify the target revision, launcher, storage profile, and UI surface before applying a procedure. Record what the current source shows, what the selected runtime proves, and when any historical observation was made.
 

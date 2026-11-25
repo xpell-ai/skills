@@ -11,6 +11,4 @@
 
 The reviewed atomic Router rejects legacy `add-credits` with `E_XAI_ATOMIC_OPERATION_UNSUPPORTED`. A visible Console action, an email allowlist, or a signed admin role cannot enable an unsupported operation. Gate any live grant on a reviewed supported path, verified actor, explicit account and amount, reason, stable idempotency, atomic ledger/projection, readback and separate authorization. Exercise ordinary-user denial, duplicate delivery, concurrency, rollback and ledger conservation on disposable storage. Preserve balances, holds and prior audit entries. Direct SQLite edits, synthetic usage and hidden overrides bypass the accounting boundary.
 
-**Historical lessons.** An uncertain dispatch retained a reservation without a confirmed customer debit. A later Console grant repair improved account selection and structured errors while the atomic grant guard remained in force. Use the linked live task evidence in authorized Knowledge to establish the present state of any hold, grant implementation, or activation.
-
 Sources in Router: `docs/transaction-exceptions.md`, `docs/atomic-accounting-r2b.md`, `docs/operator-recovery-r3c1.md`, `server/src/modules/XAIRouter/XCreditsAmount.ts`, and the current Router module, atomic repositories, and tests.
